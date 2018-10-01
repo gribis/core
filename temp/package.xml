@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+  <types>
+    <name>ApexClass</name>
+    <members>ComplexElement</members>
+    <members>ComplexExpression</members>
+    <members>ComplexMethod</members>
+    <members>ComplexToken</members>
+    <members>ExpressionElement</members>
+    <members>ExpressionFactory</members>
+    <members>ExpressionParser</members>
+    <members>regexTester</members>
+  </types>
+  <types>
+    <name>ApexPage</name>
+    <members>regexTester</members>
+    <members>LogicalElementTest</members>
+  </types>
+  <version>43.0</version>
+</Package>

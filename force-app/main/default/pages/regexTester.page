@@ -1,0 +1,31 @@
+<apex:page controller="regexTester">
+    <apex:form >
+        <apex:pageMessages ></apex:pageMessages>
+        <apex:pageBlock title="Test your regular expression">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!Test}" value="Test"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Inputs" columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Regular Expression</apex:outputLabel>
+                    <apex:inputTextarea value="{!regexp}" style="width:100%" rows="3"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Sample String</apex:outputLabel>
+                    <apex:inputTextarea value="{!sampleString}" style="width:100%" rows="8"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Result" columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Matches</apex:outputLabel>
+                    <apex:inputTextarea value="{!result}" style="width:100%" rows="20" disabled="true"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >APEX Encoded Regex</apex:outputLabel>
+                    <apex:inputTextarea value="{!apexEncoded}" style="width:100%" rows="3" disabled="true"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+    </apex:form>
+</apex:page>

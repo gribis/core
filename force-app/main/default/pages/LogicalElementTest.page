@@ -1,0 +1,60 @@
+<apex:page controller="ExpressionFactory">
+    <style>
+        .token {
+        	background-color:#FFC;
+        	margin-left: 5px;
+        	margin-right:5px;
+        }
+        .resultTrue {
+        	background-color:#CFC;
+        }
+        .resultFalse {
+        	background-color:#FCC;
+        }
+    </style>
+    <apex:form >
+        <apex:pageMessages showDetail="true"></apex:pageMessages>
+        <apex:pageBlock >
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!parseSource}" value="Parse Logical Expression" />
+                <apex:commandButton action="{!parseJson}" value="Parse JSON Structure" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection columns="1">
+                <apex:pageBlockSectionItem >
+                	<apex:outputLabel value="Test Structure Size" for="maxIndex"></apex:outputLabel>
+                    <apex:inputText value="{!maxIndex}" id="maxIndex" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                	<apex:outputLabel value="Logical Expression" for="source"></apex:outputLabel>
+                    <apex:inputText value="{!source}" id="source" style="width:100%;" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!NOT(ISNULL(tokens))}">
+                	<apex:outputLabel value="Tokens" for="tokens"></apex:outputLabel>
+                    <apex:outputPanel >
+                        <apex:repeat value="{!tokens}" var="t">
+                           <span cass="token" title="{!t.startIndex} {!t.type}"><apex:outputText value="{!t.source}" /></span>
+                        </apex:repeat>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                	<apex:outputLabel value="JSON Structure" for="json"></apex:outputLabel>
+                    <apex:inputTextArea value="{!json}" id="json" style="width:100%;height:200px;" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                	<apex:outputLabel value="Re-Encoded Expression" for="rendered"></apex:outputLabel>
+                    <apex:outputText value="{!rendered}" id="rendered" style="width:100%;" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!NOT(ISNULL(expressionTest))}">
+                	<apex:outputLabel value="Test Values" for="testValues"></apex:outputLabel>
+                    <apex:outputPanel layout="block" styleClass="{!IF(expressionResult=true,'resultTrue','resultFalse')}">
+                        <apex:variable value="{!0}" var="idx"/>
+                        <apex:repeat value="{!expressionTest}" var="x">
+                            <apex:variable value="{!idx + 1}" var="idx"/>
+                            <div cass="label" title="{!idx}"><apex:inputCheckbox value="{!x.selected}" />&nbsp;<apex:outputText value="{!idx}" /></div>
+                        </apex:repeat>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
